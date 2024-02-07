@@ -1,21 +1,19 @@
 public class Task implements TaskInterface {
 
+    private int priorityLvl;
     @Override
     public int getPriority() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPriority'");
+        return priorityLvl;
     }
 
     @Override
     public void setPriority(int priority) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setPriority'");
+        priorityLvl = priority;
     }
 
     @Override
     public TaskInterface.TaskType getTaskType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTaskType'");
+        return null;
     }
 
     @Override
