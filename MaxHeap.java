@@ -27,7 +27,15 @@ public class MaxHeap<T extends Comparable<T>>{
 
     }
     
-    public void increaseKey(){
+    public void increaseKey(int index, T key){
+        if (key.compareTo(heap.get(index)) < 0){
+            // throw new HeapException("new key must be larger than current key");TODO
+        } 
+        heap.remove(index);
+        heap.add(index, key);
+        while(index > 1 && heap.get(index/2).compareTo(heap.get(index)) < 0) {
+            //TODO
+        }
 
     }
 
