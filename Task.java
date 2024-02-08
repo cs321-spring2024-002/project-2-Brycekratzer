@@ -1,6 +1,7 @@
-public class Task implements TaskInterface {
+public class Task implements TaskInterface{
 
     private int priorityLvl;
+    //TODO instance varibales 
     @Override
     public int getPriority() {
         return priorityLvl;
@@ -40,4 +41,9 @@ public class Task implements TaskInterface {
         throw new UnsupportedOperationException("Unimplemented method 'getWaitingTime'");
     }
     
+    @Override
+    public int compareTo(Task one, Task two) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWaitingTime'");
+    }
 }
