@@ -1,45 +1,112 @@
 import java.util.ArrayList;
 
 public class MaxHeapTest {
+    enum pssibleResult { PASS, FAIL };
+    ArrayList<Integer> arrayTest;
+    final static int ELEMENT_A = 1;
+    final static int ELEMENT_B = 2;
+    final static int ELEMENT_C = 3;
+    final static int ELEMENT_D = 4;
+    final static int ELEMENT_E = 5;
+    final static int ELEMENT_F = 6;
+    final static int ELEMENT_G = 7;
+    
     public static void main(String[] args){
-
-        ArrayList<Integer> compareList = new ArrayList<>(10);
-
-        //Test if isEmpty returns true
-        MaxHeap<Integer> testingHeap = new MaxHeap(0);
-        isEmptyTest(testingHeap, "emptyHeap");
-
-        //Test if insert works for two values
-        MaxHeap<Integer> insertToHeap = new MaxHeap(3);
-        insertToHeap.insert(1);
-        insertToHeap.insert(2);
-        compareList.add(1,1); 
-        compareList.add(2,2);
-        if (insertToHeap.getElement(1) == compareList.get(1)) {
-            System.out.print("Insert two element list passed for first element\n");
-        } else {
-            System.out.print("Insert two element list failed for first element\n");
-        }
-        if (insertToHeap.getElement(2) == compareList.get(2)) {
-            System.out.print("Insert two element list passed for second element\n");
-        } else {
-            System.out.print("Insert two element list failed for second element\n");
-        }
-
-        //Test if extractMax method 
-
+        System.out.println("emptyHeap.isEmpty(): " + isEmptyTest());
+        System.out.println("notEmptyHeap.isEmpty(): " + isEmpty_WithElement());
+        System.out.println("3Element_insert_rightPlace: " + insert3Element());
+        System.out.println("extractMax_callTwice: " + extractMax_callTwice());
         
-
-
-
-
     }
 
-    public static void isEmptyTest(MaxHeap<Integer> heap, String scenario) {
-        if (heap.isEmpty() == true) {
-            System.out.print(scenario + " PASSED");
+    public static pssibleResult isEmptyTest(){
+        pssibleResult result = null;
+        MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
+        if(emptyHeap.isEmpty() == false) {
+            result = pssibleResult.FAIL;
         } else {
-            System.out.print(scenario + " FAILED");
+            result  = pssibleResult.PASS;
         }
+        return result;
     }
+
+    public static pssibleResult isEmpty_WithElement(){
+        pssibleResult result = null;
+        MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
+        emptyHeap.insert(ELEMENT_A);
+
+        if(emptyHeap.isEmpty() == false) {
+            result = pssibleResult.PASS;
+        } else {
+            result  = pssibleResult.FAIL;
+        }
+        return result;
+    }
+
+    public static pssibleResult insert3Element(){
+        pssibleResult result = pssibleResult.FAIL;
+        MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
+        emptyHeap.insert(ELEMENT_A);
+        emptyHeap.insert(ELEMENT_D);
+        emptyHeap.insert(ELEMENT_B);
+        int testPosition = 0;
+        if(ELEMENT_D == emptyHeap.getElement(0)){
+            result = pssibleResult.PASS;
+            testPosition++;
+        } 
+        if(ELEMENT_B == emptyHeap.getElement(1) || ELEMENT_A == emptyHeap.getElement(1)){
+            result = pssibleResult.PASS;
+            testPosition++;
+        } 
+        if(ELEMENT_B == emptyHeap.getElement(2) || ELEMENT_A == emptyHeap.getElement(2)){
+            result = pssibleResult.PASS;
+            testPosition++;
+        }
+        if(testPosition != 3){
+            result = pssibleResult.FAIL;
+        }
+        return result;
+    }
+
+    public static pssibleResult extractMax_callTwice(){
+        pssibleResult result = pssibleResult.PASS;
+        MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
+        emptyHeap.insert(ELEMENT_A);
+        emptyHeap.insert(ELEMENT_B);
+        emptyHeap.extractMax();
+        emptyHeap.extractMax();
+        
+        if(ELEMENT_B != emptyHeap.getElement(0)) {
+            result = pssibleResult.FAIL;
+        }
+        if(ELEMENT_A != emptyHeap.getElement(1)) {
+            result = pssibleResult.FAIL;
+        }
+        return result;
+    }
+
+    public static pssibleResult extractMax_callThree(){
+        pssibleResult result = pssibleResult.PASS;
+        MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
+        emptyHeap.insert(ELEMENT_A);
+        emptyHeap.insert(ELEMENT_B);
+        emptyHeap.insert(ELEMENT_C);
+        emptyHeap.extractMax();
+        emptyHeap.extractMax();
+        emptyHeap.extractMax();
+        
+        if(ELEMENT_C != emptyHeap.getElement(0)) {
+            result = pssibleResult.FAIL;
+        }
+        if(ELEMENT_B != emptyHeap.getElement(1)) {
+            result = pssibleResult.FAIL;
+        }
+        if(ELEMENT_A != emptyHeap.getElement(2)) {
+            result = pssibleResult.FAIL; 
+        }
+        return result;
+    }
+
+
+
 }
