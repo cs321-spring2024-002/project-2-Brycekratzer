@@ -59,7 +59,7 @@ public class MaxHeap<T extends Comparable<T>>{
         return heapSize == 0;
     }
 
-    private void heapify(int index){
+    private void heapify(int index) {
         int leftChild = (2 * index) + 1;
         int rightChild = (2 * index) + 2;
         int largest = index;
@@ -95,4 +95,5 @@ public class MaxHeap<T extends Comparable<T>>{
         element = heap.get(index);
         return element;
     }
+
 }

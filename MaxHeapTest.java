@@ -9,7 +9,7 @@ public class MaxHeapTest {
     final static int ELEMENT_D = 4;
     final static int ELEMENT_E = 5;
     final static int ELEMENT_F = 6;
-    final static int ELEMENT_G = 7;
+    final static int ELEMENT_G = 7; 
     
     public static void main(String[] args){
         System.out.println("============================");
