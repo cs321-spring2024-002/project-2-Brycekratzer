@@ -1,7 +1,19 @@
-public class Task implements TaskInterface{
+public class Task implements TaskInterface, Comparable<Task>{
 
     private int priorityLvl;
-    //TODO instance varibales 
+    private int waitingTime;
+    private int timeCreated;
+    private TaskInterface.TaskType taskType;
+    private String taskDescript;
+
+
+    public Task(int inputPriority, Task.TaskType inputTaskType, int inputWaitingTime, int inputTimeCreated, String inputTaskDescript) {
+        priorityLvl = inputPriority;
+        waitingTime = inputWaitingTime;
+        timeCreated = inputTimeCreated;
+        taskType = inputTaskType;
+        taskDescript = inputTaskDescript;
+    } 
     @Override
     public int getPriority() {
         return priorityLvl;
@@ -14,36 +26,47 @@ public class Task implements TaskInterface{
 
     @Override
     public TaskInterface.TaskType getTaskType() {
-        return null;
+        return taskType;
     }
 
     @Override
     public String getTaskDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTaskDescription'");
+        return taskDescript;
     }
 
     @Override
     public void incrementWaitingTime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'incrementWaitingTime'");
+        waitingTime++;
     }
 
     @Override
     public void resetWaitingTime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resetWaitingTime'");
+        waitingTime = 0;
     }
 
     @Override
     public int getWaitingTime() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWaitingTime'");
+        return waitingTime;
     }
-    
+
+    public int getTimeCreated() {
+        return timeCreated;
+    }
+
     @Override
-    public int compareTo(Task one, Task two) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getWaitingTime'");
+    public int compareTo(Task compareTask) {
+        int returnVal = 0;
+        if(this.priorityLvl > compareTask.getPriority()) {
+            returnVal = 1;
+        } else if(this.priorityLvl < compareTask.getPriority()) {
+            returnVal = -1;
+        } else if(this.priorityLvl == compareTask.getPriority()) {
+            if(timeCreated < compareTask.getTimeCreated()) {
+                returnVal =  1;
+            } else {
+                returnVal = -1;
+            }
+        }
+        return returnVal;
     }
 }
