@@ -96,4 +96,8 @@ public class MaxHeap<T extends Comparable<T>>{
         return element;
     }
 
+    public int getSize() {
+        return heapSize;
+    }
+
 }
