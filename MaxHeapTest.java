@@ -132,9 +132,9 @@ public class MaxHeapTest {
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
         emptyHeap.insert(ELEMENT_A);
         emptyHeap.insert(ELEMENT_B);
-        emptyHeap.increaseKey(1, ELEMENT_D);
+        emptyHeap.increaseKey(1);
 
-        if(ELEMENT_D != emptyHeap.getElement(0)) {
+        if(ELEMENT_B != emptyHeap.getElement(0)) {
             result = pssibleResult.FAIL;
         }
         return result;
@@ -146,7 +146,7 @@ public class MaxHeapTest {
         emptyHeap.insert(ELEMENT_A);
         emptyHeap.insert(ELEMENT_B);
         emptyHeap.insert(ELEMENT_E);
-        emptyHeap.increaseKey(2, ELEMENT_E);
+        emptyHeap.increaseKey(2);
 
         if(ELEMENT_E != emptyHeap.getElement(0)) {
             result = pssibleResult.FAIL;
@@ -157,17 +157,12 @@ public class MaxHeapTest {
     public static pssibleResult checkIfMaxHeap(int numOfParents, MaxHeap<Integer> testingHeap){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = testingHeap;
-        emptyHeap.insert(ELEMENT_A);
-        emptyHeap.insert(ELEMENT_B);
-        emptyHeap.insert(ELEMENT_C);
-        emptyHeap.insert(ELEMENT_D);
-        emptyHeap.insert(ELEMENT_E);
-        emptyHeap.insert(ELEMENT_F);
-        emptyHeap.insert(ELEMENT_G);
 
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < numOfParents; i++) {
             int parentNode = emptyHeap.getElement(i);
-            if(parentNode < emptyHeap.getElement(i + 1) || parentNode < emptyHeap.getElement(i + 2)){
+            int leftChild = (2 * i) + 1;
+            int rightChild = (2 * i) + 2;
+            if(parentNode < emptyHeap.getElement(rightChild) || parentNode < emptyHeap.getElement(leftChild)){
                 result = pssibleResult.FAIL;
             }
         }
@@ -180,7 +175,9 @@ public class MaxHeapTest {
 
         for(int i = 0; i < numOfParents; i++) {
             int parentNode = emptyHeap.getElement(i);
-            if(parentNode < emptyHeap.getElement(i + 1) || parentNode < emptyHeap.getElement(i + 2)){
+            int leftChild = (2 * i) + 1;
+            int rightChild = (2 * i) + 2;
+            if(parentNode < emptyHeap.getElement(rightChild) || parentNode < emptyHeap.getElement(leftChild)){
                 result = pssibleResult.FAIL;
             }
         }

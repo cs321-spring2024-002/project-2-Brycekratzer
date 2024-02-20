@@ -26,12 +26,13 @@ public class MyPriorityQueue implements PriorityQueueInterface {
     @Override
     public void update(int timeToIncrementPriority, int maxPriority) {
         for(int i = 0; i < queueHeap.getSize(); i++) {
-            queueHeap.getElement(i).incrementWaitingTime();
-            if(queueHeap.getElement(i).getWaitingTime() >= timeToIncrementPriority) {
-                queueHeap.getElement(i).resetWaitingTime();
-                if(queueHeap.getElement(i).getPriority() < maxPriority) {
-                    queueHeap.getElement(i).setPriority(queueHeap.getElement(i).getPriority() + 1);
-                    queueHeap.increaseKey(i, null);
+            Task currentElement = queueHeap.getElement(i);
+            currentElement.incrementWaitingTime();
+            if(currentElement.getWaitingTime() >= timeToIncrementPriority) {
+                currentElement.resetWaitingTime();
+                if(currentElement.getPriority() < maxPriority) {
+                    currentElement.setPriority(currentElement.getPriority() + 1);
+                    queueHeap.increaseKey(i);
                 }
             }
         }

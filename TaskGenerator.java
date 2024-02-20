@@ -7,27 +7,21 @@ public class TaskGenerator implements TaskGeneratorInterface {
     double passOutProbability;
     double deathProbability;
     boolean generateTask;
+    double taskGenerationProbability;
+    long userSeed;
+    boolean isSeed;
+    Random randGen;
 
     TaskGenerator(double taskGenerationProbability, long seed){
-        double randomNum;
-        Random randGen = new Random(seed);
-        randomNum = randGen.nextDouble();
-        if(taskGenerationProbability >= randomNum) {
-            generateTask = true;
-        } else {
-            generateTask = false;
-        }
+        this.taskGenerationProbability = taskGenerationProbability;
+        this.userSeed = seed;
+        randGen = new Random(userSeed);
+        isSeed = true;
     }
     
     TaskGenerator(double taskGenerationProbability){
-        double randomNum;
-        Random randGen = new Random();
-        randomNum = randGen.nextDouble();
-        if(taskGenerationProbability >= randomNum) {
-            generateTask = true;
-        } else {
-            generateTask = false;
-        }
+        this.taskGenerationProbability = taskGenerationProbability;
+        isSeed = false;
     }
 
     @Override
@@ -61,6 +55,23 @@ public class TaskGenerator implements TaskGeneratorInterface {
 
     @Override
     public boolean generateTask() {
+        double randomNum;
+        if(isSeed == true) {
+            randomNum = randGen.nextDouble();
+            if(taskGenerationProbability >= randomNum) {
+                generateTask = true;
+            } else {
+                generateTask = false;
+            }
+        } else  {
+            Random randGen = new Random();
+            randomNum = randGen.nextDouble();
+            if(taskGenerationProbability >= randomNum) {
+                generateTask = true;
+            } else {
+                generateTask = false;
+            }
+        }
         return generateTask;
     }
 

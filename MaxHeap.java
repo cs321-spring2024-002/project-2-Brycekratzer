@@ -21,11 +21,12 @@ public class MaxHeap<T extends Comparable<T>>{
     }
 
     public T extractMax(){
-        T max = heap.get(0);
-        heap.add(heapSize, max);
+        T maxElement = getElement(0);
+        heap.remove(0);
         heapSize--;
+        heap.add(heap.size(), maxElement);
         heapify(0);
-        return max;
+        return maxElement;
     }
 
     public void insert(T element){
@@ -34,25 +35,22 @@ public class MaxHeap<T extends Comparable<T>>{
             heapSize++;
         } else {
             heap.add(heapSize, element);
-            increaseKey(heapSize, element);
+            increaseKey(heapSize);
             heapSize++;
         }
     }
     
-    public void increaseKey(int index, T key){
-        int parentNode;
-        if(index % 2 == 0) {
-            parentNode = (index/2) - 1;
-        } else {
-            parentNode = index/2;
+    public void increaseKey(int index){
+        if( index < 0 || index > heapSize) {
+            throw new IndexOutOfBoundsException("");
         }
-        while(index > 0 && heap.get(parentNode).compareTo(heap.get(index)) < 0) {
-            T temporaryVal = heap.get(parentNode);
-            heap.set(parentNode, heap.get(index));
-            heap.set(index, temporaryVal); 
-            index = parentNode;
+        int parentNode = index/2;
+        if(heap.get(index).compareTo(heap.get(parentNode)) > 0) {
+            T tempVal = heap.get(index);
+            heap.set(index, heap.get(parentNode));
+            heap.set(parentNode, tempVal); 
+            increaseKey(parentNode);
         }
-
     }
 
     public boolean isEmpty(){
@@ -63,10 +61,12 @@ public class MaxHeap<T extends Comparable<T>>{
         int leftChild = (2 * index) + 1;
         int rightChild = (2 * index) + 2;
         int largest = index;
-        if (leftChild <= heapSize && heap.get(leftChild).compareTo(heap.get(index)) > 0) {
+        if (leftChild < heapSize && heap.get(leftChild).compareTo(heap.get(index)) > 0) {
             largest = leftChild;
+        } else {
+            largest = index;
         }
-        if (rightChild <= heapSize && heap.get(rightChild).compareTo(heap.get(index)) > 0) {
+        if (rightChild < heapSize && heap.get(rightChild).compareTo(heap.get(largest)) > 0) {
             largest = rightChild;
         }
         if (largest != index) {
@@ -78,13 +78,7 @@ public class MaxHeap<T extends Comparable<T>>{
     }
 
     private void buildMaxHeap() {
-        int parentNode;
-        if(heapSize % 2 == 0) {
-            parentNode = (heapSize/2) - 1;
-        } else {
-            parentNode = heapSize/2;
-        }
-        for(int i = parentNode; i > 0; i--){
+        for(int i = (heapSize / 2); i > 0; i--){
             heapSize--;
             heapify(heapSize);
         }

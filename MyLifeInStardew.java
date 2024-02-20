@@ -256,7 +256,7 @@ public class MyLifeInStardew {
         }
 
     /**
-     * Main method for the program.
+     * method for the program.
      */
     public static void main(String[] args) {
         MyLifeInStardew simulation = new MyLifeInStardew();
