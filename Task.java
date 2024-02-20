@@ -61,7 +61,7 @@ public class Task implements TaskInterface, Comparable<Task>{
         } else if(this.priorityLvl < compareTask.getPriority()) {
             returnVal = -1;
         } else if(this.priorityLvl == compareTask.getPriority()) {
-            if(timeCreated > compareTask.getTimeCreated()) {
+            if(timeCreated < compareTask.getTimeCreated()) {
                 returnVal =  1;
             } else {
                 returnVal = -1;

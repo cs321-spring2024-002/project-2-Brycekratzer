@@ -17,11 +17,13 @@ public class TaskGenerator implements TaskGeneratorInterface {
         this.userSeed = seed;
         randGen = new Random(userSeed);
         isSeed = true;
+        currentEnergyStorage = TaskGeneratorInterface.DEFAULT_ENERGY;
     }
     
     TaskGenerator(double taskGenerationProbability){
         this.taskGenerationProbability = taskGenerationProbability;
         isSeed = false;
+        currentEnergyStorage = TaskGeneratorInterface.DEFAULT_ENERGY;
     }
 
     @Override
