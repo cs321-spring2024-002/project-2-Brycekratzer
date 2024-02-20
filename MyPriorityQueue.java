@@ -37,5 +37,4 @@ public class MyPriorityQueue implements PriorityQueueInterface {
             }
         }
     }
-    
 }

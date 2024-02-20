@@ -53,6 +53,10 @@ public class Task implements TaskInterface, Comparable<Task>{
         return timeCreated;
     }
 
+    public String toString() {
+        return this.taskType + " " + this.taskDescript + "at Hour: " + this.timeCreated + ":00";
+    }
+
     @Override
     public int compareTo(Task compareTask) {
         int returnVal = 0;

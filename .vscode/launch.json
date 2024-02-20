@@ -23,7 +23,7 @@
             "request": "launch",
             "mainClass": "MyLifeInStardew",
             "projectName": "project-2-Brycekratzer_26dc67a7",
-            "args": "10 1 5 0.5 1234"
+            "args": "100 1 10 0.9 123456789"
         }
     ]
 }

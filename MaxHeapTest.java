@@ -1,6 +1,13 @@
 import java.util.ArrayList;
-
+/**
+ * The following is a tester class used to test the usage of the MaxHeap Data Structure
+ * 
+ * @see MaxHeap.java
+ */
 public class MaxHeapTest {
+    /**
+     * initial varibables used throughout the test
+     */
     enum pssibleResult { PASS, FAIL };
     ArrayList<Integer> arrayTest;
     final static int ELEMENT_A = 1;
@@ -11,6 +18,7 @@ public class MaxHeapTest {
     final static int ELEMENT_F = 6;
     final static int ELEMENT_G = 7; 
     
+
     public static void main(String[] args){
         System.out.println("============================");
         System.out.println("            Test            ");
@@ -39,6 +47,11 @@ public class MaxHeapTest {
 
     }
 
+     /**
+     * Tests if an empty heap is correctly identified as empty.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult isEmptyTest(){
         pssibleResult result = null;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -50,6 +63,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Tests if a heap with one element is correctly identified as not empty.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult isEmpty_WithElement(){
         pssibleResult result = null;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -63,6 +81,12 @@ public class MaxHeapTest {
         return result;
     }
 
+
+    /**
+     * Tests if inserting three elements maintains the max-heap property.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult insert3Element(){
         pssibleResult result = pssibleResult.FAIL;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -88,6 +112,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Tests if extracting the max element twice returns the correct elements.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult extractMax_callTwice(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -105,6 +134,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Tests if extracting the max element three times returns the correct elements.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult extractMax_callThree(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -127,6 +161,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Tests if increaseKey works properly with 2 elements
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult increaseKey_twoElement(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -140,6 +179,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Tests if increaseKey works properly with 3 elements
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult increaseKey_threeElement(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -154,6 +198,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Helper method used to test if maxHeap is a maxHeap by comparing parent nodes with children nodes
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult checkIfMaxHeap(int numOfParents, MaxHeap<Integer> testingHeap){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = testingHeap;
@@ -169,6 +218,11 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Helper method used to test if maxHeap is a sorted by comparing parent nodes with children nodes
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult checkIfSorted(int numOfParents, MaxHeap<Integer> testingHeap){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = testingHeap;
@@ -184,6 +238,12 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Creates a heap by inserting 1, 2, …, n (as priority values). Then check if the resulting 
+     * heap satisfies the max-heap property using checkIfMaxHeap helper method
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult insertAscendingTest(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -199,6 +259,12 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     *  Creates a heap by inserting n, n-1, …, 2, 1 (as priority values). Then checks if the
+     *  resulting heap satisfies the max-heap property using checkIfMaxHeap helper method.
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult insertDescendingTest(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -214,6 +280,12 @@ public class MaxHeapTest {
         return result;
     }
 
+    /**
+     * Creates a heap by randomly inserting n random values (as priority values) in the range 1..n. 
+     * Then checks if the resulting heap satisfies the max-heap property using checkIfMaxHeap helper method. 
+     *
+     * @return PASS if the test passes, FAIL otherwise
+     */
     public static pssibleResult insertRandomTest(){
         pssibleResult result = pssibleResult.PASS;
         MaxHeap<Integer> emptyHeap = new MaxHeap<>(10);
@@ -228,6 +300,4 @@ public class MaxHeapTest {
         result = checkIfMaxHeap(3, emptyHeap);
         return result;
     }
-
-    
 }

@@ -12,6 +12,12 @@ public class TaskGenerator implements TaskGeneratorInterface {
     boolean isSeed;
     Random randGen;
 
+     /**
+     * Constructor that sets the task generation probability and seed.
+     *
+     * @param taskGenerationProbability the probability of generating a new task
+     * @param seed the random seed to use (optional)
+     */
     TaskGenerator(double taskGenerationProbability, long seed){
         this.taskGenerationProbability = taskGenerationProbability;
         this.userSeed = seed;
@@ -20,6 +26,11 @@ public class TaskGenerator implements TaskGeneratorInterface {
         currentEnergyStorage = TaskGeneratorInterface.DEFAULT_ENERGY;
     }
     
+    /**
+     * Constructor that sets the task generation probability without a seed.
+     *
+     * @param taskGenerationProbability the probability of generating a new task
+     */
     TaskGenerator(double taskGenerationProbability){
         this.taskGenerationProbability = taskGenerationProbability;
         isSeed = false;
@@ -65,7 +76,7 @@ public class TaskGenerator implements TaskGeneratorInterface {
             } else {
                 generateTask = false;
             }
-        } else  {
+        } else {
             Random randGen = new Random();
             randomNum = randGen.nextDouble();
             if(taskGenerationProbability >= randomNum) {
@@ -79,8 +90,8 @@ public class TaskGenerator implements TaskGeneratorInterface {
 
     @Override
     public int getUnlucky(Task task, double unluckyProbability) {
-        if(unluckyProbability <= passOutProbability) {
-            if(unluckyProbability <= deathProbability && task.getTaskType() == TaskInterface.TaskType.MINING) {
+        if(unluckyProbability <= task.getTaskType().getPassingOutProbability()) {
+            if(unluckyProbability <= task.getTaskType().getDyingProbability() && task.getTaskType() == TaskInterface.TaskType.MINING) {
                 currentEnergyStorage = (int) (currentEnergyStorage * .75);
                 task.setPriority(0);
                 return 2;
