@@ -81,11 +81,11 @@ public class TaskGenerator implements TaskGeneratorInterface {
     public int getUnlucky(Task task, double unluckyProbability) {
         if(unluckyProbability <= passOutProbability) {
             if(unluckyProbability <= deathProbability && task.getTaskType() == TaskInterface.TaskType.MINING) {
-                currentEnergyStorage = (int)(currentEnergyStorage * .75);
+                currentEnergyStorage = (int) (currentEnergyStorage * .75);
                 task.setPriority(0);
                 return 2;
             } else {
-                currentEnergyStorage = (int)(currentEnergyStorage / 2);
+                currentEnergyStorage = (int) (currentEnergyStorage * .5);
                 return 1;
             }
         } else {
@@ -93,7 +93,7 @@ public class TaskGenerator implements TaskGeneratorInterface {
         }
     }
     
-        /**
+    /**
      * Create a String containing the Task's information.
      *
      * @param task - the Task
@@ -120,6 +120,6 @@ public class TaskGenerator implements TaskGeneratorInterface {
             return "     Socializing " + task.getTaskDescription() + " at " + currentEnergyStorage + " energy points (Priority:" + task.getPriority() +")";
         }
         else { return "nothing to see here..."; }
-}
+    }
 
 }
